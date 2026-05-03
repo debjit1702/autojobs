@@ -134,15 +134,15 @@ export default function ProfilePage() {
   if (loading) return <div className="p-8"><div className="h-8 w-48 shimmer rounded-lg" /></div>;
 
   return (
-    <div className="p-8 max-w-4xl mx-auto animate-fade-in">
+    <div className="p-4 sm:p-8 max-w-4xl mx-auto animate-fade-in">
       {/* Header */}
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9] flex items-center justify-center text-white text-2xl font-bold">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9] flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
             {session?.user?.name?.[0] ?? "U"}
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">{session?.user?.name}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-white">{session?.user?.name}</h1>
             <p className="text-sm text-[#71717a]">{session?.user?.email}</p>
           </div>
         </div>
@@ -152,9 +152,26 @@ export default function ProfilePage() {
         </Button>
       </div>
 
+      {/* Mobile: horizontal scrollable tab pills */}
+      <div className="flex sm:hidden gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-none">
+        {TABS.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all shrink-0 ${
+              activeTab === tab.id
+                ? "bg-[#1c1c21] text-white border border-[#27272a]"
+                : "text-[#71717a] hover:text-[#a1a1aa] hover:bg-[#141417] border border-transparent"
+            }`}
+          >
+            {tab.icon}{tab.label}
+          </button>
+        ))}
+      </div>
+
       <div className="flex gap-6">
-        {/* Sidebar tabs */}
-        <div className="w-48 shrink-0 space-y-1">
+        {/* Desktop: sidebar tabs */}
+        <div className="hidden sm:block w-48 shrink-0 space-y-1">
           {TABS.map(tab => (
             <button
               key={tab.id}
@@ -176,7 +193,7 @@ export default function ProfilePage() {
           {activeTab === "basic" && (
             <div className="space-y-4">
               <h2 className="text-base font-semibold text-white mb-5">Basic Information</h2>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-[#71717a] mb-1.5">Phone</label>
                   <input className="input-base" placeholder="+91 9876543210" value={form.phone} onChange={e => set("phone", e.target.value)} />
@@ -213,7 +230,7 @@ export default function ProfilePage() {
                 <label className="block text-xs font-medium text-[#71717a] mb-1.5">Institution</label>
                 <input className="input-base" placeholder="IIT Bombay" value={form.institution} onChange={e => set("institution", e.target.value)} />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-[#71717a] mb-1.5">CGPA</label>
                   <input className="input-base" placeholder="8.5/10" value={form.cgpa} onChange={e => set("cgpa", e.target.value)} />
@@ -239,11 +256,11 @@ export default function ProfilePage() {
                         className="text-xs text-[#ef4444]/60 hover:text-[#ef4444] transition-colors">Remove</button>
                     )}
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input className="input-base" placeholder="Company *" value={exp.company} onChange={e => setExp(i, "company", e.target.value)} />
                     <input className="input-base" placeholder="Role / Title *" value={exp.role} onChange={e => setExp(i, "role", e.target.value)} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input className="input-base" placeholder="Start (e.g. Jun 2023)" value={exp.startDate} onChange={e => setExp(i, "startDate", e.target.value)} />
                     <input className="input-base" placeholder="End (or 'Present')" value={exp.endDate} onChange={e => setExp(i, "endDate", e.target.value)} />
                   </div>
@@ -295,7 +312,7 @@ export default function ProfilePage() {
                     )}
                   </div>
                   <input className="input-base" placeholder="Project Name *" value={proj.name} onChange={e => setProject(i, "name", e.target.value)} />
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input className="input-base" placeholder="Live URL" value={proj.liveUrl} onChange={e => setProject(i, "liveUrl", e.target.value)} />
                     <input className="input-base" placeholder="GitHub URL" value={proj.githubUrl} onChange={e => setProject(i, "githubUrl", e.target.value)} />
                   </div>

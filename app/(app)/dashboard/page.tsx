@@ -79,11 +79,11 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="p-8 max-w-6xl mx-auto animate-fade-in">
+    <div className="p-4 sm:p-8 max-w-6xl mx-auto animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Dashboard</h1>
           <p className="text-sm text-[#71717a] mt-0.5">
             Welcome back, {session?.user?.name?.split(" ")[0]} 👋
           </p>
@@ -140,30 +140,30 @@ export default function DashboardPage() {
         ) : (
           <div className="divide-y divide-[#1c1c21]">
             {scans.map((scan) => (
-              <div key={scan.id} className="flex items-center gap-4 px-6 py-4 hover:bg-[#141417] transition-colors group">
+              <div key={scan.id} className="flex items-center gap-3 px-4 sm:px-6 py-4 hover:bg-[#141417] transition-colors group">
                 {/* Company avatar */}
-                <div className="w-10 h-10 rounded-xl bg-[#1c1c21] border border-[#27272a] flex items-center justify-center text-sm font-bold text-[#a1a1aa] flex-shrink-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#1c1c21] border border-[#27272a] flex items-center justify-center text-sm font-bold text-[#a1a1aa] flex-shrink-0">
                   {scan.companyName[0].toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white truncate">{scan.jobTitle}</span>
-                    <span className="text-sm text-[#52525b]">·</span>
-                    <span className="text-sm text-[#71717a] truncate">{scan.companyName}</span>
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+                    <span className="text-sm font-semibold text-white truncate max-w-[120px] sm:max-w-none">{scan.jobTitle}</span>
+                    <span className="text-sm text-[#52525b] hidden sm:inline">·</span>
+                    <span className="text-xs sm:text-sm text-[#71717a] truncate">{scan.companyName}</span>
                   </div>
                   <div className="flex items-center gap-2 mt-1">
                     <StatusBadge status={scan.status} />
                     <span className="text-xs text-[#3f3f46]">{formatRelativeTime(scan.createdAt)}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   {scan.atsScoreGenerated != null && (
                     <ScoreBadge score={scan.atsScoreGenerated} size="sm" />
                   )}
                   {scan.status === "ready" && (
                     <Link
                       href={`/scan/${scan.id}`}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[#52525b] hover:text-[#8b5cf6]"
+                      className="sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-[#52525b] hover:text-[#8b5cf6]"
                     >
                       <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -182,9 +182,9 @@ export default function DashboardPage() {
 
 function DashboardSkeleton() {
   return (
-    <div className="p-8 max-w-6xl mx-auto">
-      <div className="h-8 w-48 shimmer rounded-lg mb-8" />
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div className="p-4 sm:p-8 max-w-6xl mx-auto">
+      <div className="h-8 w-48 shimmer rounded-lg mb-6 sm:mb-8" />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
         {[...Array(4)].map((_, i) => (
           <div key={i} className="h-28 shimmer rounded-2xl" />
         ))}

@@ -156,20 +156,20 @@ export default function ScanPage() {
   return (
     <div className="flex flex-col h-screen">
       {/* Top action bar */}
-      <div className="flex items-center justify-between px-6 py-3 bg-[#0d0d14] border-b border-[#1c1c21] sticky top-0 z-20">
-        <div className="flex items-center gap-3">
-          <Link href="/dashboard" className="text-[#52525b] hover:text-[#a1a1aa] transition-colors">
+      <div className="flex items-center justify-between px-3 sm:px-6 py-3 bg-[#0d0d14] border-b border-[#1c1c21] sticky top-0 z-20">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <Link href="/dashboard" className="text-[#52525b] hover:text-[#a1a1aa] transition-colors shrink-0">
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-white">{scan.jobTitle}</span>
-              <span className="text-xs text-[#52525b]">·</span>
-              <span className="text-sm text-[#71717a]">{scan.companyName}</span>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
+              <span className="text-sm font-semibold text-white truncate max-w-[100px] sm:max-w-none">{scan.jobTitle}</span>
+              <span className="text-xs text-[#52525b] hidden sm:inline">·</span>
+              <span className="text-xs sm:text-sm text-[#71717a] truncate max-w-[80px] sm:max-w-none">{scan.companyName}</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           {score > 0 && <ScoreBadge score={score} size="sm" />}
           <Button variant="danger" size="sm" onClick={handleDelete} loading={deleting}>
             <Trash2 className="w-3.5 h-3.5" />
@@ -178,22 +178,24 @@ export default function ScanPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-[#1c1c21] bg-[#0d0d14] px-6">
+      <div className="flex border-b border-[#1c1c21] bg-[#0d0d14] px-2 sm:px-6 overflow-x-auto">
         {[
-          { key: "report", label: "Match Report", icon: <Tag className="w-3.5 h-3.5" /> },
-          { key: "resume", label: "Generated Resume", icon: <FileText className="w-3.5 h-3.5" /> },
-          { key: "cover", label: "Cover Letter", icon: <Mail className="w-3.5 h-3.5" /> },
+          { key: "report", label: "Report", fullLabel: "Match Report", icon: <Tag className="w-3.5 h-3.5" /> },
+          { key: "resume", label: "Resume", fullLabel: "Generated Resume", icon: <FileText className="w-3.5 h-3.5" /> },
+          { key: "cover", label: "Cover", fullLabel: "Cover Letter", icon: <Mail className="w-3.5 h-3.5" /> },
         ].map((tab) => (
           <button
             key={tab.key}
             onClick={() => handleTabChange(tab.key as typeof activeTab)}
-            className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+            className={`flex items-center gap-1.5 px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
               activeTab === tab.key
                 ? "border-[#8b5cf6] text-white"
                 : "border-transparent text-[#71717a] hover:text-[#a1a1aa]"
             }`}
           >
-            {tab.icon}{tab.label}
+            {tab.icon}
+            <span className="sm:hidden">{tab.label}</span>
+            <span className="hidden sm:inline">{tab.fullLabel}</span>
           </button>
         ))}
       </div>
@@ -220,9 +222,9 @@ export default function ScanPage() {
 
       {/* Match Report */}
       {scan.status === "ready" && activeTab === "report" && (
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
           {/* Left panel */}
-          <div className="w-[55%] overflow-y-auto p-6 space-y-6 border-r border-[#1c1c21]">
+          <div className="w-full md:w-[55%] overflow-y-auto p-4 sm:p-6 space-y-6 border-b md:border-b-0 md:border-r border-[#1c1c21]">
             {/* Score */}
             <ScoreGauge score={score} />
 
@@ -307,7 +309,7 @@ export default function ScanPage() {
           </div>
 
           {/* Right panel — JD with highlights */}
-          <div className="w-[45%] overflow-y-auto p-6">
+          <div className="w-full md:w-[45%] overflow-y-auto p-4 sm:p-6">
             <div className="flex items-center gap-2 mb-4">
               <Tag className="w-4 h-4 text-[#52525b]" />
               <h3 className="text-sm font-semibold text-white">Job Description</h3>

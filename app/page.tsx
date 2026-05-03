@@ -29,7 +29,7 @@ export default function LandingPage() {
       <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] rounded-full bg-[#8b5cf6]/8 blur-[80px] pointer-events-none" />
 
       {/* Navbar */}
-      <nav className="relative z-10 flex items-center justify-between px-8 py-5 max-w-7xl mx-auto">
+      <nav className="relative z-10 flex items-center justify-between px-4 sm:px-8 py-5 max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9] flex items-center justify-center">
             <Zap className="w-4 h-4 text-white" />
@@ -53,7 +53,7 @@ export default function LandingPage() {
           Powered by Google Gemini 2.5 Flash · Free
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6 animate-fade-in">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6 animate-fade-in">
           Beat the ATS.{" "}
           <span className="gradient-text">Land the interview.</span>
         </h1>
@@ -95,7 +95,7 @@ export default function LandingPage() {
               <div className="w-3 h-3 rounded-full bg-[#22c55e]" />
               <div className="flex-1 bg-[#1c1c21] rounded-md h-6 mx-4" />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 { label: "ATS Score", val: "87%", color: "#22c55e" },
                 { label: "Keywords Matched", val: "34/38", color: "#8b5cf6" },

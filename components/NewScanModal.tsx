@@ -91,7 +91,7 @@ export function NewScanModal({ onClose }: NewScanModalProps) {
 
   return (
     <div className="modal-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="bg-[#0d0d14] border border-[#1c1c21] rounded-2xl w-full max-w-5xl max-h-[92vh] flex flex-col shadow-2xl animate-fade-in">
+      <div className="bg-[#0d0d14] border border-[#1c1c21] rounded-2xl w-full max-w-5xl max-h-[95vh] flex flex-col shadow-2xl animate-fade-in">
 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#1c1c21]">
@@ -105,13 +105,13 @@ export function NewScanModal({ onClose }: NewScanModalProps) {
         </div>
 
         {/* Body */}
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-col md:flex-row flex-1 overflow-hidden overflow-y-auto md:overflow-hidden">
 
           {/* Left — Job Details */}
-          <div className="flex-1 p-6 border-r border-[#1c1c21] overflow-y-auto space-y-4">
+          <div className="flex-1 p-4 sm:p-6 border-b md:border-b-0 md:border-r border-[#1c1c21] overflow-y-auto space-y-4">
             <h3 className="text-xs font-semibold text-[#52525b] uppercase tracking-wider">Job Details</h3>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-medium text-[#71717a] mb-1.5">Company Name *</label>
                 <input className="input-base" placeholder="e.g. Google" value={companyName}
@@ -136,7 +136,7 @@ export function NewScanModal({ onClose }: NewScanModalProps) {
           </div>
 
           {/* Right — Resume */}
-          <div className="flex-1 p-6 overflow-y-auto space-y-4">
+          <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4">
             <h3 className="text-xs font-semibold text-[#52525b] uppercase tracking-wider">Your Resume</h3>
 
             {/* Upload zone */}
