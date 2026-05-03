@@ -1,0 +1,39 @@
+# ── Dependencies ────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Next.js build output ─────────────────────────────────────
+.next/
+out/
+build/
+
+# ── Environment variables (NEVER commit these) ───────────────
+.env
+.env.local
+.env*.local
+.env.development
+.env.production
+
+# ── Prisma generated client (regenerated on deploy) ──────────
+prisma/generated/
+
+# ── Debug logs ───────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── OS / Editor ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.pem
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# ── IDE ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
